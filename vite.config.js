@@ -6,6 +6,7 @@ export default defineConfig({
     plugins: [
         laravel({
             input: []
+            
         }),
         tailwindcss(),
     ],
