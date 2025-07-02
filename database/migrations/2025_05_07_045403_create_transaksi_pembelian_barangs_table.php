@@ -27,7 +27,7 @@ return new class extends Migration
                 $table->float('ONGKOS_KIRIM');
                 $table->integer('POIN_DIDAPAT')->default(0);
                 $table->integer('POIN_POTONGAN')->nullable();
-                $table->unsignedBigInteger('ID_ALAMAT_PENGIRIMAN')->nullable()->after('POIN_POTONGAN');
+                $table->unsignedBigInteger('ID_ALAMAT_PENGIRIMAN')->nullable();
                 $table->string('STATUS_BUKTI_TRANSFER', 255);
                 $table->string('STATUS_TRANSAKSI', 255);
 
@@ -50,6 +50,14 @@ return new class extends Migration
                     ->onDelete('set null');
 
                 $table->timestamps();
+            });
+
+            // If you really need the column order, you can use a separate alter statement
+            Schema::table('transaksi_pembelian_barangs', function (Blueprint $table) {
+                $table->unsignedBigInteger('ID_ALAMAT_PENGIRIMAN')
+                    ->nullable()
+                    ->after('POIN_POTONGAN')
+                    ->change();
             });
         }
 

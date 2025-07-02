@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('requests', function (Blueprint $table) {
             $table->id('ID_REQUEST');
             $table->unsignedBigInteger('ID_ORGANISASI');
-            $table->unsignedBigInteger('ID_BARANG')->nullable()->after('ID_ORGANISASI');
+            $table->unsignedBigInteger('ID_BARANG')->nullable(); // Removed the after() clause
             $table->string('NAMA_BARANG_REQUEST');
             $table->date('CREATE_AT')->nullable();
             $table->string('DESKRIPSI_REQUEST', 255)->nullable();

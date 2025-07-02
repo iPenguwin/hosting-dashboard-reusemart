@@ -5,19 +5,29 @@ namespace Database\Seeders;
 use App\Models\DesaKelurahan;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class DesaKelurahanSeeder extends Seeder
 {
     public function run()
     {
-        // Disable foreign key constraints (PostgreSQL way)
-        Schema::disableForeignKeyConstraints();
+        // // Disable foreign key constraints (PostgreSQL way)
+        // Schema::disableForeignKeyConstraints();
+
+        // // Truncate the table
+        // DesaKelurahan::truncate();
+
+        // // Re-enable foreign key constraints
+        // Schema::enableForeignKeyConstraints();
+
+        // Disable foreign key constraints (MySQL way)
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         // Truncate the table
         DesaKelurahan::truncate();
 
         // Re-enable foreign key constraints
-        Schema::enableForeignKeyConstraints();
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $desaKelurahans = [
             // Sleman (id: 210, 17 kecamatan, 86 desa/kelurahan)

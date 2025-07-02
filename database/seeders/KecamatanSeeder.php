@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Kecamatan;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 
 class KecamatanSeeder extends Seeder
 {
@@ -18,6 +19,15 @@ class KecamatanSeeder extends Seeder
 
         // Re-enable foreign key constraints
         Schema::enableForeignKeyConstraints();
+
+        // Disable foreign key constraints (MySQL way)
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        // Truncate the table
+        Kecamatan::truncate();
+
+        // Re-enable foreign key constraints
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
         $kecamatans = [
             ['id_kecamatan' => 2948, 'id_kabupaten_kota' => 210, 'nama_kecamatan' => 'Moyudan'],
